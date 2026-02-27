@@ -4,6 +4,13 @@ import { ShieldCheck, Lock, PhoneCall } from 'lucide-react';
 
 const LeadForm: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
+
+  const trackMeta = (event: string, params?: Record<string, unknown>) => {
+    try {
+      const w = window as Window & { fbq?: (...args: unknown[]) => void };
+      if (typeof w.fbq === 'function') w.fbq('track', event, params || {});
+    } catch {}
+  };
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -25,6 +32,10 @@ const LeadForm: React.FC = () => {
       });
 
       if (!response.ok) throw new Error('Falha no envio.');
+      trackMeta('Lead', {
+        content_name: 'LP Go Smile Mobile 50+',
+        lead_source: 'form_submit'
+      });
       setIsSuccess(true);
     } catch (err) {
       setError('Ocorreu um erro. Por favor, ligue-nos diretamente para 914 226 599.');
@@ -47,7 +58,11 @@ const LeadForm: React.FC = () => {
         <p className="text-lg text-gray-700 font-bold leading-relaxed mb-8">
           A nossa equipa entrará em contacto consigo muito em breve para agendar a sua avaliação.
         </p>
-        <a href="tel:914226599" className="flex items-center justify-center gap-3 bg-black text-white p-6 text-xl font-bold uppercase tracking-widest">
+        <a
+          href="tel:914226599"
+          onClick={() => trackMeta('Contact', { contact_method: 'phone', placement: 'lead_success' })}
+          className="flex items-center justify-center gap-3 bg-black text-white p-6 text-xl font-bold uppercase tracking-widest"
+        >
            <PhoneCall className="w-6 h-6"/> Ligar Agora
         </a>
       </div>
