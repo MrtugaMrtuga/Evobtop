@@ -59,13 +59,6 @@ const TRANSFORMATIONS = [
 
 const App: React.FC = () => {
   const [selectedCase, setSelectedCase] = useState<typeof TRANSFORMATIONS[0] | null>(null);
-
-  const trackMeta = (event: string, params?: Record<string, unknown>) => {
-    try {
-      const w = window as Window & { fbq?: (...args: unknown[]) => void };
-      if (typeof w.fbq === 'function') w.fbq('track', event, params || {});
-    } catch {}
-  };
   const [selectedClinicPhoto, setSelectedClinicPhoto] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -108,11 +101,7 @@ const App: React.FC = () => {
           </div>
 
           <div className="lg:hidden flex items-center gap-2">
-            <a
-              href="tel:914226599"
-              onClick={() => trackMeta('Contact', { contact_method: 'phone', placement: 'mobile_nav' })}
-              className="bg-black text-white p-3 rounded-full"
-            >
+            <a href="tel:914226599" className="bg-black text-white p-3 rounded-full">
               <Phone className="w-5 h-5"/>
             </a>
             <button 
@@ -452,11 +441,7 @@ const App: React.FC = () => {
 
       {/* MOBILE STICKY CTA */}
       <div className="lg:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-3 z-50 flex gap-2">
-        <a
-          href="tel:914226599"
-          onClick={() => trackMeta('Contact', { contact_method: 'phone', placement: 'mobile_sticky' })}
-          className="flex-1 bg-white border-2 border-black text-black text-center py-4 text-lg font-black flex items-center justify-center gap-2"
-        >
+        <a href="tel:914226599" className="flex-1 bg-white border-2 border-black text-black text-center py-4 text-lg font-black flex items-center justify-center gap-2">
            LIGAR
         </a>
         <a href="#leads" className="flex-[2] bg-black text-white text-center py-4 text-lg font-black">
@@ -465,11 +450,7 @@ const App: React.FC = () => {
       </div>
 
       <div className="hidden lg:flex fixed bottom-8 right-8 flex-col gap-4 z-50">
-        <a
-          href="https://wa.me/351914226599"
-          onClick={() => trackMeta('Contact', { contact_method: 'whatsapp', placement: 'floating_button' })}
-          className="bg-[#25D366] text-white p-5 rounded-full shadow-2xl hover:scale-105 transition-all"
-        >
+        <a href="https://wa.me/351914226599" className="bg-[#25D366] text-white p-5 rounded-full shadow-2xl hover:scale-105 transition-all">
           <MessageCircle className="w-8 h-8 fill-current" />
         </a>
         <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="bg-white text-black p-5 rounded-full shadow-2xl border hover:bg-black hover:text-white">

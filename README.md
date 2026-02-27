@@ -1,20 +1,29 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Go Smile Landing Page
 
-# Run and deploy your AI Studio app
+Landing page de alta conversão para a clínica dentária Go Smile, focada em captação de leads para implantes dentários e reabilitação oral.
 
-This contains everything you need to run your app locally.
+## Funcionalidades
+- **Formulário de Leads**: Integrado com webhook n8n.
+- **Quiz Interativo**: Para qualificação de pacientes.
+- **Meta Pixel**: Rastreamento de visualizações de página e conversões (Leads).
+- **Design Responsivo**: Otimizado para dispositivos móveis.
 
-View your app in AI Studio: https://ai.studio/apps/b6a855c3-9b76-456e-9448-b6f914886e04
+## Tecnologias
+- React 19
+- Tailwind CSS
+- Lucide React
+- Vite
 
-## Run Locally
+## Configuração do Meta Pixel
+O código do Meta Pixel está configurado no arquivo `index.html`.
+As conversões são rastreadas automaticamente:
+- **PageView**: Em todas as visitas.
+- **Lead**: Quando o formulário de contacto é enviado com sucesso.
+- **ViewContent**: Quando o quiz é concluído.
 
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Como Implementar no GitHub
+1. Inicialize o repositório: `git init`
+2. Adicione os arquivos: `git add .`
+3. Commit: `git commit -m "Add Meta Pixel tracking and landing page features"`
+4. Adicione o remoto: `git remote add origin <URL_DO_REPOSITORIO>`
+5. Push: `git push -u origin main`

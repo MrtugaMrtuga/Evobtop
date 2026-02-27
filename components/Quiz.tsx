@@ -29,8 +29,15 @@ const Quiz: React.FC = () => {
   ];
 
   const handleOptionClick = (val: string) => {
+    const nextStep = step + 1;
     setAnswers([...answers, val]);
-    setStep(step + 1);
+    setStep(nextStep);
+    
+    if (nextStep === questions.length) {
+      if (typeof window !== 'undefined' && (window as any).fbq) {
+        (window as any).fbq('track', 'ViewContent', { content_name: 'Quiz Completed' });
+      }
+    }
   };
 
   return (
